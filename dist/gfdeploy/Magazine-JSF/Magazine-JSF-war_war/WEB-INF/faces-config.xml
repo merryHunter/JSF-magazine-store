@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
+            <renderer-class>com.chernuhaiv.bean.admin.MyFileUploadRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+    <!--            Global                  -->
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/main.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!--          User pages                        -->
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/main.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>signup</from-outcome>
+            <to-view-id>/register.xhtml</to-view-id>
+        </navigation-case>
+<!--        <navigation-case>
+            <from-outcome>adminsuccess</from-outcome>
+            <to-view-id>/admin/manage.xhtml</to-view-id>
+        </navigation-case>-->
+    </navigation-rule>
+    <navigation-rule> 
+        <from-view-id>/register.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/main.xhtml </to-view-id>    
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/error.xhtml </to-view-id>    
+        </navigation-case>
+    </navigation-rule>
+    
+<!--    <navigation-rule> 
+        <from-view-id>/main.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>my-orders</from-outcome>
+            <to-view-id>/user/my-orders.xhtml </to-view-id>    
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>my-payment</from-outcome>
+            <to-view-id>/user/my-payment.xhtml</to-view-id>    
+        </navigation-case>
+    </navigation-rule>-->
+    <navigation-rule> 
+        <from-view-id>/user/my-payment.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>paid</from-outcome>
+            <to-view-id>/user/my-orders.xhtml </to-view-id>    
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>main</from-outcome>
+            <to-view-id>/main.xhtml </to-view-id>    
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Admin pages                      -->
+    
+             <!--Main navigation-->             
+    <navigation-rule> 
+                   
+        <from-view-id>/admin/manage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>magazine/list-magazine</from-outcome>
+            <to-view-id>/admin/magazine/list-magazine.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>order/list-order</from-outcome>
+            <to-view-id>/admin/order/list-order.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>publisher/list-publisher</from-outcome>
+            <to-view-id>/admin/publisher/list-publisher.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Magazine edit navigation           -->
+    <navigation-rule>
+        <from-view-id>/admin/magazine/list-magazine.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createMagazine</from-outcome>
+            <to-view-id>/admin/magazine/create-magazine.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>goUpdateMagazine</from-outcome>
+            <to-view-id>/admin/magazine/edit-magazine.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deletedMagazine</from-outcome>
+            <to-view-id>/admin/magazine/list-magazine.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Magazine update navigation          -->
+    
+    <navigation-rule>
+        <from-view-id>/admin/magazine/edit-Magazine.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>updatedMagazine</from-outcome>
+            <to-view-id>/admin/magazine/list-magazine.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Magazine create navigation          -->
+    
+    <navigation-rule>
+        <from-view-id>/admin/magazine/create-magazine.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createdMagazine</from-outcome>
+            <to-view-id>/admin/magazine/list-magazine.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     
+    <!--           Order edit navigation              -->
+
+
+    <!--           Publisher list navigation          -->
+     
+    <navigation-rule>
+        <from-view-id>/admin/publisher/list-publisher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createPublisher</from-outcome>
+            <to-view-id>/admin/publisher/create-publisher.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>goUpdatePublisher</from-outcome>
+            <to-view-id>/admin/publisher/edit-publisher.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>deletedPublisher</from-outcome>
+            <to-view-id>/admin/publisher/list-publisher.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Publisher update navigation          -->
+    
+    <navigation-rule>
+        <from-view-id>/admin/publisher/edit-publisher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>updatedPublisher</from-outcome>
+            <to-view-id>/admin/publisher/list-publisher.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--           Publisher create navigation          -->
+    
+    <navigation-rule>
+        <from-view-id>/admin/publisher/create-publisher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createdPublisher</from-outcome>
+            <to-view-id>/admin/publisher/list-publisher.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    
+    <application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+</faces-config>

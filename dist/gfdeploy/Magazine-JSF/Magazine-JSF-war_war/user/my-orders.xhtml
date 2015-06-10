@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>My cabinet</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml" >
+            <ui:define name="content">
+                <p:outputLabel rendered="#{  empty userBean.order}"
+                    class="center-align sub-head-h1"
+                               value="You are subscribed on:" />
+                <p:outputLabel rendered="#{not empty userBean.order}"
+                               class="center-align sub-head-h1"
+                               value="You are not subscribed on magazine." />
+                <p:dataGrid rendered="#{not empty userMagazineGridView.userOrder}" 
+                            value="#{userMagazineGridView.userOrder}" 
+                             class="dataGridAlign"
+                             var="order" columns="3"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="6,12,16" 
+                             >
+                    
+                    <p:panel >
+                        <h:panelGrid columns="1" style="">
+
+                            <f:facet name="header">
+                                <div class="image-magazine">
+                                <p:graphicImage name="/images/#{order.magazineFk.mname}.png" height="150" 
+                                                />
+                                </div>
+                            </f:facet>
+
+                            <h:outputText value="Price:" />
+                            <h:outputText  rendered="#{not empty userBean.order}" value="#{order.magazineFk.price}" />
+
+                            <h:outputText value="Periodical(number in year):" />
+                            <h:outputText value="#{order.magazineFk.numberPerYear}" />
+
+
+                            <h:outputText value="#{order.magazineFk.description}" />
+                            <h:outputText value="Expire date:" />
+                            <h:outputText value="#{order.expireDate}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataGrid>
+            </ui:define>
+            
+            <ui:define name="left-menu">
+                <ul class="nav nav-sidebar left-align " >
+                    <li class="active"><a href="my-orders.xhtml">My Orders</a></li>
+                    <li class="active"><a href="my-payment.xhtml">My Payment</a></li>
+                    <li class="active"><a href="">Empty link</a></li>
+                </ul>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

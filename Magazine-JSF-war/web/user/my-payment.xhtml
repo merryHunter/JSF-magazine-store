@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      >
+    <h:head>
+        <title>My Tote</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml" >
+            <ui:define name="content"  rendered="#{userBean.isLoggedInAsUser }">
+                <p:outputLabel rendered="#{not empty userBean.order}"
+                               class="center-align sub-head-h1"
+                               value="Confirm selected product" />
+                <h:outputText rendered="#{empty userBean.order}"
+                              value="No magazine selected!" 
+                              class="center-align sub-head-h1"/>
+                <p:dataGrid rendered="#{not empty userBean.order}"
+                            class="dataGridAlign"
+                            value="#{userBean.order}" var="order" columns="1"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+                            {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                            rowsPerPageTemplate="6,12,16"     
+                            >
+
+                    <p:panel header="#{order.magazineFk.mname}" style="text-align:center">
+                        <h:panelGrid rendered="#{userBean.isLoggedInAsUser}" columns="1" style="width:100%">
+
+                            <f:facet name="header">
+                                <div class="image-magazine">
+                                    <p:graphicImage name="/images/#{order.magazineFk.mname}.png" height="150" 
+                                                    style="position: relative;
+                                                    left: -20px;"/>
+                                </div>
+                            </f:facet>
+
+
+                            <h:outputText value="Periodical(number in year):" />
+                            <h:outputText value="#{order.magazineFk.numberPerYear}" />
+
+
+                            <h:outputText value="#{order.magazineFk.description}" />
+                            <h:outputText value="Expire date:" />
+                            <h:outputText value="#{order.expireDate}" />
+
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:dataGrid>
+                <h:outputLabel rendered="#{not empty userBean.order}"
+                               value="Price:" 
+                               style="text-align: center;"
+                               class="sub-head-h1"/>
+                <h:outputText  rendered="#{not empty userBean.order}"
+                               value="#{userBean.magazinesPrice}"
+                               class="sub-head-h1"/>
+
+                <h:form >
+                    <p:commandButton rendered="#{not empty userBean.order}"
+                                     value="Confirm" action="#{userBean.pay}" />
+                </h:form>
+            </ui:define>
+
+            <ui:define name="left-menu">
+                <ul class="nav nav-sidebar left-align " >
+                    <li class="active"><a href="my-orders.xhtml">My Orders</a></li>
+                    <li class="active"><a href="my-payment.xhtml">My Payment</a></li>
+                    <li class="active"><a href="">Empty link</a></li>
+                </ul>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

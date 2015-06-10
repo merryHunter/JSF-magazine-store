@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Publisher Edit</title>
+    </h:head>
+    <h:body>
+            <p:button outcome="createPublisher" value="Add publisher" />
+        <h:form>
+            <p:dataTable value="#{adminPublisherBean.publisherList}" var="item">
+                <p:column>
+                    <f:facet name="header">  Name    </f:facet>
+                        #{item.pname}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">  Country    </f:facet>
+                        #{item.country}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">  Year founded    </f:facet>
+                        #{item.yearFounded}
+                </p:column>
+
+                <p:column>
+                    <p:button outcome="#{adminPublisherBean.update(item)}" value="Edit" />
+                </p:column>
+                <h:column>
+                    <p:button outcome="#{adminPublisherBean.delete(item)}" value="Delete" />
+                </h:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
