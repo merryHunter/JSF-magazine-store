@@ -4,13 +4,7 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    <render-kit>
-        <renderer>
-            <component-family>org.primefaces.component</component-family>
-            <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
-            <renderer-class>com.chernuhaiv.bean.admin.MyFileUploadRenderer</renderer-class>
-        </renderer>
-    </render-kit>
+   
     <!--            Global                  -->
     <navigation-rule>
         <from-view-id>*</from-view-id>
